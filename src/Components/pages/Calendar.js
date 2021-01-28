@@ -29,6 +29,7 @@ export class Calendar extends Component {
         };
         this.handleScroll = this.handleScroll.bind(this);
         this.getCalender = this.getCalender.bind(this);
+        this.setToday = this.setToday.bind(this);
     }
     componentDidMount() {
         this.setState({ ...this.state, mounted: true, calender: this.getCalender(this.state.month, this.state.year) });
@@ -42,9 +43,35 @@ export class Calendar extends Component {
 
     handleScroll(e) {
         if (e.deltaY < 0) {
-            console.log("scrolling up");
+            if (this.state.month === 0) {
+                this.setState({
+                    ...this.state,
+                    month: 11,
+                    year: this.state.year - 1,
+                    calender: this.getCalender(11, this.state.year - 1),
+                });
+            } else {
+                this.setState({
+                    ...this.state,
+                    month: this.state.month - 1,
+                    calender: this.getCalender(this.state.month - 1, this.state.year),
+                });
+            }
         } else if (e.deltaY > 0) {
-            console.log("scrolling down");
+            if (this.state.month === 11) {
+                this.setState({
+                    ...this.state,
+                    month: 0,
+                    year: this.state.year + 1,
+                    calender: this.getCalender(0, this.state.year + 1),
+                });
+            } else {
+                this.setState({
+                    ...this.state,
+                    month: this.state.month + 1,
+                    calender: this.getCalender(this.state.month + 1, this.state.year),
+                });
+            }
         }
     }
 
@@ -72,6 +99,11 @@ export class Calendar extends Component {
         }
         return finalRes;
     }
+    setToday() {
+        let month = new Date().getMonth();
+        let year = new Date().getFullYear();
+        this.setState({ ...this.state, month: month, year: year, calender: this.getCalender(month, year) });
+    }
     render() {
         return (
             <div>
@@ -79,7 +111,7 @@ export class Calendar extends Component {
                     <span>
                         {months[this.state.month]} , {this.state.year}
                     </span>
-                    <button>Today</button>
+                    <button onClick={this.setToday}>Today</button>
                 </div>
                 <div className="calendar-col">
                     {this.state.calender.map(row => {

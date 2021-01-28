@@ -12,8 +12,8 @@ function Box({ text }) {
     }, []);
     const getStyle = () => {
         let styleObj = {
-            height: (size.height - (12 / 100) * size.height) / 7,
-            width: (size.width - (10 / 100) * size.width) / 7,
+            height: (size.height - (11 / 100) * size.height) / 7,
+            width: (size.width - (2 / 100) * size.width) / 7,
             backgroundColor: "#f0e1af",
             border: "solid",
             borderWidth: 1,

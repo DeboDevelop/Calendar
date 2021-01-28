@@ -22,7 +22,7 @@ export class Calendar extends Component {
         super(props);
         this.state = {
             mounted: false,
-            calender: [],
+            calender: [[], [], [], [], [], [], []],
             day: new Date().getDate(),
             month: new Date().getMonth(),
             year: new Date().getFullYear(),
@@ -50,6 +50,7 @@ export class Calendar extends Component {
 
     getCalender(month, year) {
         let result = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+        let finalRes = [];
         let daysInMonth = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
         if ((year % 4 === 0 && year % 100 === 0) || year % 400 === 0) {
             daysInMonth[1] = 29;
@@ -64,7 +65,12 @@ export class Calendar extends Component {
         for (let i = 0; i < 42 - blanks - daysInMonth[month]; i++) {
             result.push("");
         }
-        return result;
+        let startIndex = 0;
+        for (let i = 0; i < 7; i++) {
+            finalRes.push(result.slice(startIndex, startIndex + 7));
+            startIndex = startIndex + 7;
+        }
+        return finalRes;
     }
     render() {
         return (
@@ -75,9 +81,15 @@ export class Calendar extends Component {
                     </span>
                     <button>Today</button>
                 </div>
-                <div className="calendar">
-                    {this.state.calender.map(item => {
-                        return <Box text={item} />;
+                <div className="calendar-col">
+                    {this.state.calender.map(row => {
+                        return (
+                            <div className="calendar-row">
+                                {row.map(item => {
+                                    return <Box text={item} />;
+                                })}
+                            </div>
+                        );
                     })}
                 </div>
             </div>

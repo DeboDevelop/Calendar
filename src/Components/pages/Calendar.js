@@ -86,7 +86,7 @@ export class Calendar extends Component {
                         return (
                             <div className="calendar-row">
                                 {row.map(item => {
-                                    return <Box text={item} />;
+                                    return <Box text={item} month={this.state.month} year={this.state.year} />;
                                 })}
                             </div>
                         );

@@ -1,6 +1,6 @@
 import React, { useLayoutEffect, useState } from "react";
 
-function Box({ text }) {
+function Box({ text, month, year }) {
     const [size, setSize] = useState({ width: 0, height: 0 });
     useLayoutEffect(() => {
         function updateSize() {
@@ -16,14 +16,54 @@ function Box({ text }) {
             width: (size.width - (2 / 100) * size.width) / 7,
             backgroundColor: "#f0e1af",
             border: "solid",
-            borderWidth: 1,
+            borderWidth: 0.3,
             borderColor: "#000000",
         };
+        if (text === "Sun") {
+            styleObj["backgroundColor"] = "#ff0000";
+        } else if (
+            text === "Mon" ||
+            text === "Tue" ||
+            text === "Wed" ||
+            text === "Thu" ||
+            text === "Fri" ||
+            text === "Sat"
+        ) {
+            styleObj["backgroundColor"] = "#0000ff";
+        } else if (text === "") {
+            styleObj["backgroundColor"] = "#ababab";
+        }
+        const currDay = new Date().getDate();
+        const currMonth = new Date().getMonth();
+        const currYear = new Date().getFullYear();
+        if (currDay === text && currMonth === month && currYear === year) {
+            styleObj["borderColor"] = "#1009e0";
+            styleObj["backgroundColor"] = "#26f0dc";
+        }
         return styleObj;
+    };
+    const gettxt = () => {
+        if (
+            text === "Sun" ||
+            text === "Mon" ||
+            text === "Tue" ||
+            text === "Wed" ||
+            text === "Thu" ||
+            text === "Fri" ||
+            text === "Sat"
+        ) {
+            return {
+                color: "#ffffff",
+            };
+        } else {
+            return {
+                color: "#000000",
+            };
+        }
     };
     return (
         <div style={getStyle()}>
-            <span>{text} </span>
+            <span style={gettxt()}>{text} </span>
         </div>
     );
 }

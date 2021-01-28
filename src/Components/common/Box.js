@@ -1,6 +1,6 @@
 import React, { useLayoutEffect, useState } from "react";
 
-function Box() {
+function Box({ text }) {
     const [size, setSize] = useState({ width: 0, height: 0 });
     useLayoutEffect(() => {
         function updateSize() {
@@ -12,9 +12,10 @@ function Box() {
     }, []);
     const getStyle = () => {
         let styleObj = {
-            height: (size.height - 120) / 7,
-            width: size.width / 7,
+            height: (size.height - (12 / 100) * size.height) / 7,
+            width: (size.width - (10 / 100) * size.width) / 7,
             backgroundColor: "#f0e1af",
+            border: "solid",
             borderWidth: 1,
             borderColor: "#000000",
         };
@@ -22,7 +23,7 @@ function Box() {
     };
     return (
         <div style={getStyle()}>
-            <span>Text </span>
+            <span>{text} </span>
         </div>
     );
 }

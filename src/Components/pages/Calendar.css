@@ -1,0 +1,16 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    background-color: #4287f5;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    height: 40px;
+}
+
+.calendar {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}

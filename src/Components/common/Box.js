@@ -1,6 +1,8 @@
 import React, { useLayoutEffect, useState } from "react";
+import { useHistory } from "react-router-dom";
 
 function Box({ text, month, year }) {
+    let history = useHistory();
     const [size, setSize] = useState({ width: 0, height: 0 });
     useLayoutEffect(() => {
         function updateSize() {
@@ -61,8 +63,13 @@ function Box({ text, month, year }) {
             };
         }
     };
+    const getDetail = () => {
+        if (text >= 1 && text <= 31) {
+            history.push(`/details?day=${text}&month=${month}&year=${year}`);
+        }
+    };
     return (
-        <div style={getStyle()}>
+        <div style={getStyle()} onClick={getDetail}>
             <span style={gettxt()}>{text} </span>
         </div>
     );

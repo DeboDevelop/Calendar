@@ -1,7 +1,7 @@
 import React, { useLayoutEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 
-function Box({ text, month, year }) {
+function Box({ text, index, month, year }) {
     let history = useHistory();
     const [size, setSize] = useState({ width: 0, height: 0 });
     useLayoutEffect(() => {
@@ -14,37 +14,13 @@ function Box({ text, month, year }) {
     }, []);
     const getStyle = () => {
         let styleObj = {
-            height: (size.height - (11 / 100) * size.height) / 7,
+            height: (size.height - (11 / 100) * size.height - 30) / 6,
             width: (size.width - (2 / 100) * size.width) / 7,
-            backgroundColor: "#f0e1af",
+            backgroundColor: "#FCFEFF",
             border: "solid",
             borderWidth: 0.3,
             borderColor: "#000000",
         };
-        if (text === "Sun") {
-            styleObj["backgroundColor"] = "#ff0000";
-        } else if (
-            text === "Mon" ||
-            text === "Tue" ||
-            text === "Wed" ||
-            text === "Thu" ||
-            text === "Fri" ||
-            text === "Sat"
-        ) {
-            styleObj["backgroundColor"] = "#0000ff";
-        } else if (text === "") {
-            styleObj["backgroundColor"] = "#ababab";
-        }
-        const currDay = new Date().getDate();
-        const currMonth = new Date().getMonth();
-        const currYear = new Date().getFullYear();
-        if (currDay === text && currMonth === month && currYear === year) {
-            styleObj["borderColor"] = "#1009e0";
-            styleObj["backgroundColor"] = "#26f0dc";
-        }
-        return styleObj;
-    };
-    const gettxt = () => {
         if (
             text === "Sun" ||
             text === "Mon" ||
@@ -54,14 +30,28 @@ function Box({ text, month, year }) {
             text === "Fri" ||
             text === "Sat"
         ) {
-            return {
-                color: "#ffffff",
-            };
-        } else {
-            return {
-                color: "#000000",
-            };
+            styleObj["height"] = 30;
         }
+        if (index === 0) {
+            styleObj["backgroundColor"] = "#ECEAEF";
+        }
+        return styleObj;
+    };
+    const gettxt = () => {
+        let styleObj = {
+            color: "#000000",
+        };
+        const currDay = new Date().getDate();
+        const currMonth = new Date().getMonth();
+        const currYear = new Date().getFullYear();
+        if (currDay === text && currMonth === month && currYear === year) {
+            styleObj["backgroundColor"] = "#ff0000";
+            styleObj["borderRadius"] = 50;
+        }
+        if (text === "Sun") {
+            styleObj["color"] = "#818181";
+        }
+        return styleObj;
     };
     const getDetail = () => {
         if (text >= 1 && text <= 31) {

@@ -108,17 +108,26 @@ export class Calendar extends Component {
         return (
             <div>
                 <div className="header">
-                    <span>
-                        {months[this.state.month]} , {this.state.year}
+                    <span className="header-txt">
+                        <b>{months[this.state.month]}</b> {this.state.year}
                     </span>
-                    <button onClick={this.setToday}>Today</button>
+                    <button className="btn" onClick={this.setToday}>
+                        Today
+                    </button>
                 </div>
                 <div className="calendar-col">
                     {this.state.calender.map(row => {
                         return (
                             <div className="calendar-row">
-                                {row.map(item => {
-                                    return <Box text={item} month={this.state.month} year={this.state.year} />;
+                                {row.map((item, index) => {
+                                    return (
+                                        <Box
+                                            text={item}
+                                            index={index}
+                                            month={this.state.month}
+                                            year={this.state.year}
+                                        />
+                                    );
                                 })}
                             </div>
                         );

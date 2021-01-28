@@ -1,12 +1,32 @@
 .header {
     display: flex;
     justify-content: space-between;
-    background-color: #4287f5;
+    background-color: #f7f7f7;
     flex-direction: row;
     flex-wrap: nowrap;
     padding-top: 5px;
     padding-bottom: 5px;
     height: 40px;
+}
+
+.header-txt {
+    font-size: 150%;
+    padding-top: 5px;
+    padding-left: 10px;
+}
+
+.btn {
+    background-color: #fcfeff;
+    padding-left: 5px;
+    padding-right: 5px;
+    font-size: 15px;
+    margin-right: 20px;
+    border: solid 1px;
+    border-color: #777777;
+}
+
+.btn:hover {
+    transform: scale(1.2);
 }
 
 .calendar-row {
@@ -19,4 +39,5 @@
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
+    align-items: center;
 }

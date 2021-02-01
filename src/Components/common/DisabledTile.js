@@ -1,9 +1,9 @@
 import React from "react";
 import "./Tile.css";
 
-function Tile({ data }) {
+function DisabledTile({ data }) {
     return (
-        <div className="tile">
+        <div className="disabled-tile overlay">
             <img className="img" src={data.images[0].imageurl} alt="card"></img>
             <div className="legends">
                 <div>
@@ -29,9 +29,9 @@ function Tile({ data }) {
                         ))}
                 </div>
             </div>
-            <div className="txt truncate">{data.text}</div>
+            <div className="txt truncate-overflow">{data.text}</div>
         </div>
     );
 }
 
-export default Tile;
+export default DisabledTile;

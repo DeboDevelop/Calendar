@@ -1,6 +1,8 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useHistory, useLocation } from "react-router-dom";
+import Tile from "../common/Tile";
+import "./Details.css";
 
 function Details() {
     let history = useHistory();
@@ -80,7 +82,17 @@ function Details() {
             ) : (
                 <>
                     {state.posts.length !== 0 ? (
-                        <div>{state.posts[state.currIndex].calendardatetime}</div>
+                        <div className="display">
+                            <div className="card-container">
+                                <Tile data={state.posts[0]} />
+                            </div>
+                            <div className="card-container">
+                                <Tile data={state.posts[1]} />
+                            </div>
+                            <div className="card-container">
+                                <Tile data={state.posts[2]} />
+                            </div>
+                        </div>
                     ) : (
                         <div>Hello</div>
                     )}

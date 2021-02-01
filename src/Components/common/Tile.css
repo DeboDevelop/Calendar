@@ -1,0 +1,50 @@
+.img {
+    width: 100%;
+}
+
+.tile {
+    width: 20rem;
+    height: 30rem;
+    box-shadow: 0px 0px 10px 10px grey;
+}
+
+.star {
+    color: #57c7ff;
+}
+
+.legends {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.fill {
+    margin: 0px 5px 0px 5px;
+    padding: 3px;
+    border-radius: 50%;
+}
+
+.c {
+    background-color: #f0c9a5;
+}
+
+.dc {
+    background-color: #b5edf5;
+}
+.pr {
+    background-color: #b5dcf5;
+}
+
+.cu {
+    background-color: #d8a5f0;
+}
+
+.hc {
+    background-color: #f4b5f5;
+}
+
+.txt {
+    margin-top: 10px;
+    text-align: justify;
+    padding: 5px;
+}

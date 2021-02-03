@@ -1,0 +1,105 @@
+.post-img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    object-position: 50% 50%;
+}
+
+.circle-with-text {
+    justify-content: center;
+    align-items: center;
+    border-radius: 100%;
+    text-align: center;
+    margin: 5px 2px;
+    font-size: 15px;
+    padding: 10px;
+    display: flex;
+    height: 10px;
+    width: 10px;
+}
+
+.legends-div {
+    height: 40px;
+    display: flex;
+    flex-direction: row;
+}
+
+.first-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+span {
+    font-size: 20px;
+}
+
+.c {
+    background-color: #fbe4e4;
+}
+
+.dc {
+    background-color: #ddedea;
+}
+.pr {
+    background-color: #ddebf1;
+}
+
+.cu {
+    background-color: #f4dfeb;
+}
+
+.hc {
+    background-color: #f4dfeb;
+}
+
+.star {
+    height: 24px;
+    width: 24px;
+}
+
+.star-div {
+    margin-top: 8px;
+    margin-left: 5px;
+}
+
+@media only screen and (max-width: 800) {
+    .star {
+        height: 10px;
+        width: 10px;
+    }
+    span {
+        font-size: 15px;
+    }
+
+    .legends-div {
+        height: 30px;
+    }
+    .circle-with-text {
+        margin: 5px 2px;
+        font-size: 10px;
+        padding: 5px;
+        height: 7px;
+        width: 7px;
+    }
+}
+
+@media only screen and (max-width: 1040px) {
+    .star {
+        height: 16px;
+        width: 16px;
+    }
+    .star-div {
+        margin-top: 12px;
+    }
+}
+
+@media only screen and (max-width: 580px) {
+    .star {
+        height: 8px;
+        width: 8px;
+    }
+    .star-div {
+        margin-top: 16px;
+    }
+}

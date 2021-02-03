@@ -1,0 +1,106 @@
+{
+    "requesteruserid": null,
+    "requesterusername": null,
+    "responseobjects": [
+        {
+            "posts": [
+                {
+                    "id": "0d865818-a8ee-4151-9093-96c0a97aa63d",
+
+                    "userid": "6c007289-518a-11eb-a487-3ca82abc3dd4",
+                    "iscalendarentry": true,
+
+                    "calendardatetime": "2020-12-04T07:00:00",
+
+                    "images": [
+                        {
+                            "imageurl": "https://ik.imagekit.io/bj96n986jb/dev/Screenshot_2020-12-05_at_12.00.43_AM_3XTnZB8Hr.png",
+                            "updatedontimestamp": "2020-08-09T21:37:54.5535126Z"
+                        }
+                    ],
+                    "rating": 5,
+
+                    "text": "Hi, I'm Kevin Parker, and I run Tame Impala. Some of our good songs that you could check out would be The less I know the better, Let it happen, New person - same old mistake, Guilty conscience, Love/Paranoia, etc. ",
+
+                    "privacy": 18,
+
+                    "typeofday": ["protein treatment", "deep conditioning"],
+                    "updatedontimestamp": "2020-12-04T18:31:47.261956"
+                },
+                {
+                    "id": "0d865818-a8ee-4151-9093-96c0a97aa63d",
+
+                    "userid": "6c007289-518a-11eb-a487-3ca82abc3dd4",
+                    "iscalendarentry": true,
+
+                    "calendardatetime": "2020-12-02T07:00:00",
+
+                    "images": [
+                        {
+                            "imageurl": "http://jazzandrock.com/wp-content/uploads/2020/03/Tame-Impala-Photo-by-Neil-Krug-Hi-Res-678x381.jpg",
+                            "updatedontimestamp": "2020-08-09T21:37:54.5535126Z"
+                        }
+                    ],
+                    "rating": 2,
+
+                    "text": "Hi, I'm Kevin Parker, and I run Tame Impala. Some of our good songs that you could check out would be The less I know the better, Let it happen, New person - same old mistake, Guilty conscience, Love/Paranoia, etc. ",
+
+                    "privacy": 18,
+
+                    "typeofday": ["protein treatment", "deep conditioning", "hair cut"],
+                    "updatedontimestamp": "2020-12-04T18:31:47.261956"
+                },
+                {
+                    "id": "0d865818-a8ee-4151-9093-96c0a97aa63d",
+
+                    "userid": "6c007289-518a-11eb-a487-3ca82abc3dd4",
+                    "iscalendarentry": true,
+
+                    "calendardatetime": "2020-11-29T07:00:00",
+
+                    "images": [
+                        {
+                            "imageurl": "https://faroutmagazine.co.uk/static/uploads/2020/02/Kevin-Parker-details-the-Tame-Impala-%E2%80%9Ccreative-strain%E2%80%9D-768x541.jpg",
+                            "updatedontimestamp": "2020-08-09T21:37:54.5535126Z"
+                        }
+                    ],
+                    "rating": 3,
+
+                    "text": "Hi, I'm Kevin Parker, and I run Tame Impala. Some of our good songs that you could check out would be The less I know the better, Let it happen, New person - same old mistake, Guilty conscience, Love/Paranoia, etc. ",
+
+                    "privacy": 18,
+
+                    "typeofday": ["hair cut", "hair color"],
+                    "updatedontimestamp": "2020-12-04T18:31:47.261956"
+                },
+                {
+                    "id": "0d865818-a8ee-4151-9093-96c0a97aa63d",
+
+                    "userid": "6c007289-518a-11eb-a487-3ca82abc3dd4",
+                    "iscalendarentry": true,
+
+                    "calendardatetime": "2020-11-15T07:00:00",
+
+                    "images": [
+                        {
+                            "imageurl": "https://iso.500px.com/wp-content/uploads/2015/03/business_cover.jpeg",
+                            "updatedontimestamp": "2020-08-09T21:37:54.5535126Z"
+                        }
+                    ],
+                    "rating": 1,
+
+                    "text": "Hi, I'm Kevin Parker, and I run Tame Impala. Some of our good songs that you could check out would be The less I know the better, Let it happen, New person - same old mistake, Guilty conscience, Love/Paranoia, etc. ",
+
+                    "privacy": 18,
+
+                    "typeofday": ["protein treatment", "clarifying"],
+                    "updatedontimestamp": "2020-12-04T18:31:47.261956"
+                }
+            ],
+            "continuationtoken": {
+                "sorton": "calendardatetime",
+                "token": "07-09-2020 07:00:00"
+            }
+        }
+    ]
+}

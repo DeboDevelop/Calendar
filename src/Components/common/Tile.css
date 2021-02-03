@@ -31,9 +31,9 @@ body {
     opacity: 0.5;
 }
 
-.star {
+/* .star {
     color: #57c7ff;
-}
+} */
 
 .legends {
     display: flex;
@@ -48,22 +48,22 @@ body {
 }
 
 .c {
-    background-color: #f0c9a5;
+    background-color: #fbe4e4;
 }
 
 .dc {
-    background-color: #b5edf5;
+    background-color: #ddedea;
 }
 .pr {
-    background-color: #b5dcf5;
+    background-color: #ddebf1;
 }
 
 .cu {
-    background-color: #d8a5f0;
+    background-color: #f4dfeb;
 }
 
 .hc {
-    background-color: #f4b5f5;
+    background-color: #f4dfeb;
 }
 
 .txt {

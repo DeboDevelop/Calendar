@@ -43,35 +43,35 @@ export class Calendar extends Component {
 
     handleScroll(e) {
         if (e.deltaY < 0) {
-            if (this.state.month === 0) {
-                this.setState({
-                    ...this.state,
-                    month: 11,
-                    year: this.state.year - 1,
-                    calender: this.getCalender(11, this.state.year - 1),
-                });
-            } else {
-                this.setState({
-                    ...this.state,
-                    month: this.state.month - 1,
-                    calender: this.getCalender(this.state.month - 1, this.state.year),
-                });
-            }
+            // if (this.state.month === 0) {
+            //     this.setState({
+            //         ...this.state,
+            //         month: 11,
+            //         year: this.state.year - 1,
+            //         calender: this.getCalender(11, this.state.year - 1),
+            //     });
+            // } else {
+            //     this.setState({
+            //         ...this.state,
+            //         month: this.state.month - 1,
+            //         calender: this.getCalender(this.state.month - 1, this.state.year),
+            //     });
+            // }
         } else if (e.deltaY > 0) {
-            if (this.state.month === 11) {
-                this.setState({
-                    ...this.state,
-                    month: 0,
-                    year: this.state.year + 1,
-                    calender: this.getCalender(0, this.state.year + 1),
-                });
-            } else {
-                this.setState({
-                    ...this.state,
-                    month: this.state.month + 1,
-                    calender: this.getCalender(this.state.month + 1, this.state.year),
-                });
-            }
+            // if (this.state.month === 11) {
+            //     this.setState({
+            //         ...this.state,
+            //         month: 0,
+            //         year: this.state.year + 1,
+            //         calender: this.getCalender(0, this.state.year + 1),
+            //     });
+            // } else {
+            //     this.setState({
+            //         ...this.state,
+            //         month: this.state.month + 1,
+            //         calender: this.getCalender(this.state.month + 1, this.state.year),
+            //     });
+            // }
         }
     }
 
@@ -111,9 +111,7 @@ export class Calendar extends Component {
                     <span className="header-txt">
                         <b>{months[this.state.month]}</b> {this.state.year}
                     </span>
-                    <button className="btn" onClick={this.setToday}>
-                        Today
-                    </button>
+                    <button className="btn">Today</button>
                 </div>
                 <div className="calendar-col">
                     {this.state.calender.map(row => {

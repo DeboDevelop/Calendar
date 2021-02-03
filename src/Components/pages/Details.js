@@ -23,7 +23,7 @@ function Details() {
     });
     const fetchPost = () => {
         axios
-            .post("http://quinncareapi-dev.us-east-2.elasticbeanstalk.com/graph", {
+            .post("https://devapi.quinn.care/graph", {
                 requestobjects: [
                     {
                         posts: {

@@ -2,3 +2,8 @@
     display: flex;
     flex-direction: column;
 }
+
+.all-calendar-reverse {
+    display: flex;
+    flex-direction: column-reverse;
+}

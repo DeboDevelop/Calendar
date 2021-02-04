@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import Calendar from "../common/Calendar";
+import "./Home.css";
 
 const months = [
     "January",
@@ -28,6 +29,7 @@ function Home() {
                 ...today,
             },
         ],
+        itemsReverse: [],
     });
     const [title, setTitle] = useState({
         month: today.month,
@@ -46,52 +48,87 @@ function Home() {
         });
     };
     const appendTop = () => {
-        let data = state.items[0];
-        if (data.month === 0) {
-            console.log(1);
-            data = {
-                day: 0,
-                month: 11,
-                year: data.year - 1,
-            };
-            setState({
-                items: [data, ...state.items],
-            });
-        } else {
-            console.log(2);
-            data = {
-                day: 0,
-                month: data.month - 1,
-                year: data.year,
-            };
-            setState({
-                items: [data, ...state.items],
-            });
-        }
+        setState(prevState => {
+            if (prevState.itemsReverse.length === 0) {
+                let data = { ...today };
+                if (data.month === 0) {
+                    console.log(1);
+                    data = {
+                        day: 0,
+                        month: 11,
+                        year: data.year - 1,
+                    };
+                    return {
+                        ...prevState,
+                        itemsReverse: [...prevState.itemsReverse, data],
+                    };
+                } else {
+                    console.log(2);
+                    data = {
+                        day: 0,
+                        month: data.month - 1,
+                        year: data.year,
+                    };
+                    return {
+                        ...prevState,
+                        itemsReverse: [...prevState.itemsReverse, data],
+                    };
+                }
+            } else {
+                let data = prevState.itemsReverse[prevState.itemsReverse.length - 1];
+                if (data.month === 0) {
+                    console.log(1);
+                    data = {
+                        day: 0,
+                        month: 11,
+                        year: data.year - 1,
+                    };
+                    return {
+                        ...prevState,
+                        itemsReverse: [...prevState.itemsReverse, data],
+                    };
+                } else {
+                    console.log(2);
+                    data = {
+                        day: 0,
+                        month: data.month - 1,
+                        year: data.year,
+                    };
+                    return {
+                        ...prevState,
+                        itemsReverse: [...prevState.itemsReverse, data],
+                    };
+                }
+            }
+        });
     };
     const appendBottom = () => {
-        let data = state.items[state.items.length - 1];
-        if (data.month === 11) {
-            console.log(3);
-            data = {
-                day: 0,
-                month: 0,
-                year: data.year + 1,
-            };
-            setState({
-                items: [...state.items, data],
-            });
-        } else {
-            console.log(4);
-            data = {
-                day: 0,
-                month: data.month + 1,
-                year: data.year,
-            };
-            setState({
-                items: [...state.items, data],
-            });
-        }
+        setState(prevState => {
+            let data = prevState.items[prevState.items.length - 1];
+            if (data.month === 11) {
+                console.log(3);
+                data = {
+                    day: 0,
+                    month: 0,
+                    year: data.year + 1,
+                };
+                return {
+                    ...prevState,
+                    items: [...state.items, data],
+                };
+            } else {
+                console.log(4);
+                data = {
+                    day: 0,
+                    month: data.month + 1,
+                    year: data.year,
+                };
+                return {
+                    ...prevState,
+                    items: [...state.items, data],
+                };
+            }
+        });
     };
     const handleScroll = e => {
         const windowHeight = "innerHeight" in window ? window.innerHeight : document.documentElement.offsetHeight;
@@ -120,7 +157,7 @@ function Home() {
         return () => {
             window.removeEventListener("scroll", handleScroll);
         };
-    }, []);
+    });
     console.log("Infinite");
     return (
         <div>
@@ -137,17 +174,24 @@ function Home() {
                     marginTop: 50,
                 }}></div>
             <div onScroll={handleScroll} className="all-calendar">
-                {state.items.map(item => {
-                    if (item.day === today.day && item.month === today.month && item.year === today.year) {
-                        return (
-                            <div ref={calendarRef}>
-                                <Calendar date={today} changeTitle={changeTitle} />
-                            </div>
-                        );
-                    } else {
+                <div className="all-calendar-reverse">
+                    {state.itemsReverse.map(item => {
                         return <Calendar date={item} changeTitle={changeTitle} />;
-                    }
-                })}
+                    })}
+                </div>
+                <div className="all-calendar">
+                    {state.items.map(item => {
+                        if (item.day === today.day && item.month === today.month && item.year === today.year) {
+                            return (
+                                <div ref={calendarRef}>
+                                    <Calendar date={today} changeTitle={changeTitle} />
+                                </div>
+                            );
+                        } else {
+                            return <Calendar date={item} changeTitle={changeTitle} />;
+                        }
+                    })}
+                </div>
             </div>
         </div>
     );

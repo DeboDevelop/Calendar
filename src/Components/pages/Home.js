@@ -22,17 +22,13 @@ function Home() {
         month: new Date().getMonth(),
         year: new Date().getFullYear(),
     };
-    const [state, setState] = useState(() => ({
+    const [state, setState] = useState({
         items: [
             {
                 ...today,
             },
         ],
-        topMonth: new Date().getMonth(),
-        topYear: new Date().getFullYear(),
-        bottomMonth: new Date().getMonth(),
-        bottomYear: new Date().getFullYear(),
-    }));
+    });
     const [title, setTitle] = useState({
         month: today.month,
         year: today.year,
@@ -50,62 +46,50 @@ function Home() {
         });
     };
     const appendTop = () => {
-        let data = null;
-        if (state.topMonth === 0) {
+        let data = state.items[0];
+        if (data.month === 0) {
             console.log(1);
             data = {
                 day: 0,
                 month: 11,
-                year: state.topYear - 1,
+                year: data.year - 1,
             };
-            setState(() => ({
-                ...state,
+            setState({
                 items: [data, ...state.items],
-                topMonth: 11,
-                topYear: state.topYear - 1,
-            }));
+            });
         } else {
             console.log(2);
             data = {
                 day: 0,
-                month: state.topMonth - 1,
-                year: state.topYear,
+                month: data.month - 1,
+                year: data.year,
             };
-            setState(() => ({
-                ...state,
+            setState({
                 items: [data, ...state.items],
-                topMonth: state.topMonth - 1,
-                topYear: state.topYear,
-            }));
+            });
         }
     };
     const appendBottom = () => {
-        let data = null;
-        if (state.bottomMonth === 11) {
+        let data = state.items[state.items.length - 1];
+        if (data.month === 11) {
             console.log(3);
             data = {
                 day: 0,
                 month: 0,
-                year: state.bottomYear + 1,
+                year: data.year + 1,
             };
             setState({
-                ...state,
-                items: [data, ...state.items],
-                bottomMonth: 0,
-                bottomYear: state.bottomYear + 1,
+                items: [...state.items, data],
             });
         } else {
             console.log(4);
             data = {
                 day: 0,
-                month: state.bottomMonth + 1,
-                year: state.bottomYear,
+                month: data.month + 1,
+                year: data.year,
             };
             setState({
-                ...state,
-                items: [data, ...state.items],
-                bottomMonth: state.bottomMonth + 1,
-                bottomYear: state.bottomYear,
+                items: [...state.items, data],
             });
         }
     };

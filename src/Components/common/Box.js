@@ -31,7 +31,7 @@ function Box({ text, index, month, year }) {
             let d2 = createDates(text, month, year);
             if (d1 > d2) {
                 console.log(month);
-                let decide = Math.floor(Math.random() * 5);
+                let decide = Math.floor(Math.random() * 4);
                 if (decide === 0) {
                     decide = Math.floor(Math.random() * 4);
                     setPost(data.responseobjects[0].posts[decide]);

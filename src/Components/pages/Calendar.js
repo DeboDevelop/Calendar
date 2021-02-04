@@ -111,7 +111,7 @@ export class Calendar extends Component {
                     <span className="header-txt">
                         <b>{months[this.state.month]}</b> {this.state.year}
                     </span>
-                    <button className="btn">Today</button>
+                    <button className="btn-today">Today</button>
                 </div>
                 <div className="calendar-col">
                     {this.state.calender.map(row => {

@@ -15,7 +15,7 @@
     padding-left: 10px;
 }
 
-.btn {
+.btn-today {
     background-color: #fcfeff;
     padding-left: 5px;
     padding-right: 5px;
@@ -25,7 +25,7 @@
     border-color: #777777;
 }
 
-.btn:hover {
+.btn-today:hover {
     transform: scale(1.2);
 }
 

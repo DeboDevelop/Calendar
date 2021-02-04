@@ -3,74 +3,42 @@ html {
     line-height: var(--lh);
 }
 
-body {
-    background-color: #fffaf1;
-}
-
 .img {
+    height: 100%;
     width: 100%;
-    max-height: 60%;
-    object-fit: scale-down;
-    padding-top: 10px;
+    object-fit: cover;
+    object-position: 50% 50%;
 }
 
 .tile {
-    width: 20rem;
-    height: 30rem;
-    box-shadow: 0px 0px 10px 10px grey;
-    border-radius: 10px;
+    width: 250px;
+    border-style: solid;
+    border-width: thin;
+    border-color: #adadad;
+    box-shadow: 2px 2px #cccccc;
+    border-radius: 2px;
     overflow: hidden;
 }
 
 .disabled-tile {
-    width: 16rem;
-    height: 24rem;
-    box-shadow: 0px 0px 10px 10px grey;
-    border-radius: 10px;
+    width: 200px;
+    border-style: solid;
+    border-width: thin;
+    border-color: #adadad;
+    box-shadow: 2px 2px #cccccc;
+    border-radius: 2px;
     overflow: hidden;
-    opacity: 0.5;
+    opacity: 0.3;
 }
-
-/* .star {
-    color: #57c7ff;
-} */
 
 .legends {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
-}
-
-.fill {
-    margin: 0px 5px 0px 5px;
-    padding: 3px;
-    border-radius: 50%;
-}
-
-.c {
-    background-color: #fbe4e4;
-}
-
-.dc {
-    background-color: #ddedea;
-}
-.pr {
-    background-color: #ddebf1;
-}
-
-.cu {
-    background-color: #f4dfeb;
-}
-
-.hc {
-    background-color: #f4dfeb;
 }
 
 .txt {
-    margin-top: 10px;
     text-align: justify;
     padding-left: 5px;
-    padding-top: 5px;
     padding-right: 5px;
 }
 
@@ -79,7 +47,6 @@ body {
     position: relative;
     max-height: calc(var(--lh) * var(--max-lines));
     overflow: hidden;
-    padding-right: 1rem;
 }
 
 .truncate-overflow {
@@ -104,24 +71,25 @@ body {
     background: white;
 }
 
-.btn {
-    outline: none;
-    text-decoration: none;
-    width: 5rem;
-    height: 2rem;
-    font-size: x-large;
+.star-disabled {
+    height: 20px;
+    width: 20px;
 }
 
-.btn-prev {
-    background-color: #f5d7f6;
+.circle-with-text-disabled {
+    justify-content: center;
+    align-items: center;
+    border-radius: 100%;
+    text-align: center;
+    margin: 5px 2px;
+    font-size: 12px;
+    padding: 8px;
+    display: flex;
+    height: 8px;
+    width: 8px;
 }
 
-.btn-next {
-    background-color: #e4c2f8;
-}
-
-@media only screen and (max-width: 980px) {
-    .disabled-tile {
-        display: none;
-    }
+.pads {
+    padding-left: 5px;
+    padding-right: 5px;
 }

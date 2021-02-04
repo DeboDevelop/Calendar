@@ -11,6 +11,7 @@
         "react-read-more-read-less": "^1.0.7",
         "react-router-dom": "^5.2.0",
         "react-scripts": "4.0.1",
+        "react-visibility-sensor": "^5.1.1",
         "web-vitals": "^0.2.4"
     },
     "scripts": {

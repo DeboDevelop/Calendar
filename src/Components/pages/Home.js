@@ -22,7 +22,7 @@ function Home() {
         month: new Date().getMonth(),
         year: new Date().getFullYear(),
     };
-    const [state, setState] = useState({
+    const [state, setState] = useState(() => ({
         items: [
             {
                 ...today,
@@ -32,11 +32,21 @@ function Home() {
         topYear: new Date().getFullYear(),
         bottomMonth: new Date().getMonth(),
         bottomYear: new Date().getFullYear(),
+    }));
+    const [title, setTitle] = useState({
+        month: today.month,
+        year: today.year,
     });
     const calendarRef = useRef(null);
     const currDate = () => {
         calendarRef.current.scrollIntoView({
             behavior: "smooth",
+        });
+    };
+    const changeTitle = (month, year) => {
+        setTitle({
+            month: month,
+            year: year,
         });
     };
     const appendTop = () => {
@@ -48,12 +58,12 @@ function Home() {
                 month: 11,
                 year: state.topYear - 1,
             };
-            setState({
+            setState(() => ({
                 ...state,
                 items: [data, ...state.items],
                 topMonth: 11,
                 topYear: state.topYear - 1,
-            });
+            }));
         } else {
             console.log(2);
             data = {
@@ -61,12 +71,12 @@ function Home() {
                 month: state.topMonth - 1,
                 year: state.topYear,
             };
-            setState({
+            setState(() => ({
                 ...state,
                 items: [data, ...state.items],
                 topMonth: state.topMonth - 1,
                 topYear: state.topYear,
-            });
+            }));
         }
     };
     const appendBottom = () => {
@@ -132,22 +142,26 @@ function Home() {
         <div>
             <div className="header">
                 <span className="header-txt">
-                    <b>{months[today.month]}</b> {today.year}
+                    <b>{months[title.month]}</b> {title.year}
                 </span>
                 <button className="btn-today" onClick={currDate}>
                     Today
                 </button>
             </div>
+            <div
+                style={{
+                    marginTop: 50,
+                }}></div>
             <div onScroll={handleScroll} className="all-calendar">
                 {state.items.map(item => {
                     if (item.day === today.day && item.month === today.month && item.year === today.year) {
                         return (
                             <div ref={calendarRef}>
-                                <Calendar date={today} />
+                                <Calendar date={today} changeTitle={changeTitle} />
                             </div>
                         );
                     } else {
-                        return <Calendar date={item} />;
+                        return <Calendar date={item} changeTitle={changeTitle} />;
                     }
                 })}
             </div>

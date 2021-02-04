@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import VizSensor from "react-visibility-sensor";
 import Box from "./Box";
 import "./Calendar.css";
 
@@ -48,26 +49,34 @@ export class Calendar extends Component {
     }
     render() {
         return (
-            <div>
-                <div className="calendar-col">
-                    {this.state.calender.map(row => {
-                        return (
-                            <div className="calendar-row">
-                                {row.map((item, index) => {
-                                    return (
-                                        <Box
-                                            text={item}
-                                            index={index}
-                                            month={this.state.month}
-                                            year={this.state.year}
-                                        />
-                                    );
-                                })}
-                            </div>
-                        );
-                    })}
+            <VizSensor
+                partialVisibility
+                onChange={isVisible => {
+                    if (isVisible) {
+                        this.props.changeTitle(this.state.month, this.state.year);
+                    }
+                }}>
+                <div>
+                    <div className="calendar-col">
+                        {this.state.calender.map(row => {
+                            return (
+                                <div className="calendar-row">
+                                    {row.map((item, index) => {
+                                        return (
+                                            <Box
+                                                text={item}
+                                                index={index}
+                                                month={this.state.month}
+                                                year={this.state.year}
+                                            />
+                                        );
+                                    })}
+                                </div>
+                            );
+                        })}
+                    </div>
                 </div>
-            </div>
+            </VizSensor>
         );
     }
 }

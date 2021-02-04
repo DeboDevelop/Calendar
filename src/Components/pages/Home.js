@@ -145,11 +145,9 @@ function Home() {
         const topScroll = html.clientHeight ? html : body;
         if (windowBottom >= docHeight) {
             appendBottom();
-            alert("Bottom");
         }
         if (topScroll.scrollTop === 0) {
             appendTop();
-            alert("Top");
         }
     };
     useEffect(() => {

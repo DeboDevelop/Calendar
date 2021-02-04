@@ -5,6 +5,11 @@ import unfilledStar from "../../assets/icons/unfilledStar.svg";
 import "./Box.css";
 let data = require("../../assets/dummy/data.json");
 
+function createDates(day1, month1, year1) {
+    let d = new Date(year1, month1 - 1, day1 + 1);
+    return d.getTime();
+}
+
 function Box({ text, index, month, year }) {
     let history = useHistory();
     const [size, setSize] = useState({ width: 0, height: 0 });
@@ -19,10 +24,18 @@ function Box({ text, index, month, year }) {
     }, []);
     useEffect(() => {
         if (text >= 1 && text <= 31) {
-            let decide = Math.floor(Math.random() * 5);
-            if (decide === 0) {
-                decide = Math.floor(Math.random() * 4);
-                setPost(data.responseobjects[0].posts[decide]);
+            const currDay = new Date().getDate();
+            const currMonth = new Date().getMonth();
+            const currYear = new Date().getFullYear();
+            let d1 = createDates(currDay, currMonth, currYear);
+            let d2 = createDates(text, month, year);
+            if (d1 > d2) {
+                console.log(month);
+                let decide = Math.floor(Math.random() * 5);
+                if (decide === 0) {
+                    decide = Math.floor(Math.random() * 4);
+                    setPost(data.responseobjects[0].posts[decide]);
+                }
             }
         }
     }, []);
@@ -81,7 +94,7 @@ function Box({ text, index, month, year }) {
         return styleObj;
     };
     const getDetail = () => {
-        if (text >= 1 && text <= 31) {
+        if (text >= 1 && text <= 31 && post !== null) {
             history.push(`/details?day=${text}&month=${month}&year=${year}`);
         }
     };

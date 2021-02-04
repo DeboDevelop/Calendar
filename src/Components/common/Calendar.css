@@ -7,6 +7,7 @@
     padding-top: 5px;
     padding-bottom: 5px;
     height: 40px;
+    border-bottom: 1px solid #777777;
 }
 
 .header-txt {

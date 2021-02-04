@@ -1,80 +1,22 @@
 import React, { Component } from "react";
-import Box from "../common/Box";
+import Box from "./Box";
 import "./Calendar.css";
-
-const months = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
-];
 
 export class Calendar extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            mounted: false,
             calender: [[], [], [], [], [], [], []],
-            day: new Date().getDate(),
-            month: new Date().getMonth(),
-            year: new Date().getFullYear(),
+            day: this.props.date.day,
+            month: this.props.date.month,
+            year: this.props.date.year,
         };
-        this.handleScroll = this.handleScroll.bind(this);
         this.getCalender = this.getCalender.bind(this);
         this.setToday = this.setToday.bind(this);
     }
     componentDidMount() {
-        this.setState({ ...this.state, mounted: true, calender: this.getCalender(this.state.month, this.state.year) });
-        window.addEventListener("wheel", e => this.handleScroll(e));
+        this.setState({ ...this.state, calender: this.getCalender(this.state.month, this.state.year) });
     }
-
-    componentWillUnmount() {
-        this.setState({ ...this.state, mounted: false });
-        window.removeEventListener("wheel", this.handleScroll);
-    }
-
-    handleScroll(e) {
-        if (e.deltaY < 0) {
-            // if (this.state.month === 0) {
-            //     this.setState({
-            //         ...this.state,
-            //         month: 11,
-            //         year: this.state.year - 1,
-            //         calender: this.getCalender(11, this.state.year - 1),
-            //     });
-            // } else {
-            //     this.setState({
-            //         ...this.state,
-            //         month: this.state.month - 1,
-            //         calender: this.getCalender(this.state.month - 1, this.state.year),
-            //     });
-            // }
-        } else if (e.deltaY > 0) {
-            // if (this.state.month === 11) {
-            //     this.setState({
-            //         ...this.state,
-            //         month: 0,
-            //         year: this.state.year + 1,
-            //         calender: this.getCalender(0, this.state.year + 1),
-            //     });
-            // } else {
-            //     this.setState({
-            //         ...this.state,
-            //         month: this.state.month + 1,
-            //         calender: this.getCalender(this.state.month + 1, this.state.year),
-            //     });
-            // }
-        }
-    }
-
     getCalender(month, year) {
         let result = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
         let finalRes = [];
@@ -107,12 +49,6 @@ export class Calendar extends Component {
     render() {
         return (
             <div>
-                <div className="header">
-                    <span className="header-txt">
-                        <b>{months[this.state.month]}</b> {this.state.year}
-                    </span>
-                    <button className="btn-today">Today</button>
-                </div>
                 <div className="calendar-col">
                     {this.state.calender.map(row => {
                         return (

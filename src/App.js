@@ -1,8 +1,8 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./App.css";
-import Calendar from "./Components/pages/Calendar";
 import Details from "./Components/pages/Details";
+import Home from "./Components/pages/Home";
 
 function App() {
     return (
@@ -12,7 +12,7 @@ function App() {
                     <Details />
                 </Route>
                 <Route exact path="/">
-                    <Calendar />
+                    <Home />
                 </Route>
             </Switch>
         </Router>

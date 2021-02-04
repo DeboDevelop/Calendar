@@ -13,6 +13,30 @@ function DisabledTile({ data }) {
             textAlign: "center",
         };
     };
+    const getText = () => {
+        let months = ["", "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+        let year = data.calendardatetime.substring(0, 4);
+        let month = data.calendardatetime.substring(5, 7);
+        let day = data.calendardatetime.substring(8, 10);
+        let strData = "";
+        if (day.charAt(0) === "0") {
+            strData = day.charAt(1);
+        } else {
+            strData = day;
+        }
+
+        if (day.charAt(1) === "1") {
+            strData += "st";
+        } else if (day.charAt(1) === "2") {
+            strData += "nd";
+        } else if (day.charAt(1) === "3") {
+            strData += "rd";
+        } else {
+            strData += "th";
+        }
+        strData += " " + months[month] + ", " + year;
+        return strData;
+    };
     return (
         <div className="disabled-tile overlay">
             <div style={getImg()}>
@@ -43,7 +67,8 @@ function DisabledTile({ data }) {
                         ))}
                 </div>
             </div>
-            <div className="txt truncate-overflow">{data.text}</div>
+            <p className="date">{getText()}</p>
+            <div className="txt truncate">{data.text}</div>
         </div>
     );
 }

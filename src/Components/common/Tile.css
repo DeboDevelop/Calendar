@@ -1,8 +1,3 @@
-html {
-    --lh: 1.4rem;
-    line-height: var(--lh);
-}
-
 .img {
     height: 100%;
     width: 100%;
@@ -42,33 +37,15 @@ html {
     padding-right: 5px;
 }
 
-.truncate {
-    --max-lines: 5;
-    position: relative;
-    max-height: calc(var(--lh) * var(--max-lines));
-    overflow: hidden;
+.date {
+    padding: 5px;
+    font-weight: 900;
 }
 
-.truncate-overflow {
-    --max-lines: 4;
-    position: relative;
-    max-height: calc(var(--lh) * var(--max-lines));
+.truncate {
     overflow: hidden;
-    padding-right: 1rem;
-}
-.truncate-overflow::before .truncate::before {
-    position: absolute;
-    content: "...";
-    inset-block-end: 0;
-    inset-inline-end: 0;
-}
-.truncate-overflow::after .truncate::after {
-    content: "";
-    position: absolute;
-    inset-inline-end: 0;
-    width: 1rem;
-    height: 1rem;
-    background: white;
+    line-height: 1.2em;
+    height: 3.6em;
 }
 
 .star-disabled {
@@ -92,4 +69,9 @@ html {
 .pads {
     padding-left: 5px;
     padding-right: 5px;
+}
+
+.link {
+    font-size: medium;
+    font-weight: 900;
 }

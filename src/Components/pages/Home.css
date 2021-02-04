@@ -1,0 +1,4 @@
+.all-calendar {
+    display: flex;
+    flex-direction: column;
+}

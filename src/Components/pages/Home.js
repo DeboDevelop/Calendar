@@ -36,8 +36,14 @@ function Home() {
         year: today.year,
     });
     const calendarRef = useRef(null);
+    const bottomRef = useRef(null);
     const currDate = () => {
         calendarRef.current.scrollIntoView({
+            behavior: "smooth",
+        });
+    };
+    const scrollbot = () => {
+        bottomRef.current.scrollIntoView({
             behavior: "smooth",
         });
     };
@@ -156,6 +162,9 @@ function Home() {
             window.removeEventListener("scroll", handleScroll);
         };
     });
+    useEffect(() => {
+        scrollbot();
+    }, []);
     console.log("Infinite");
     return (
         <div>
@@ -190,6 +199,7 @@ function Home() {
                         }
                     })}
                 </div>
+                <div ref={bottomRef}></div>
             </div>
         </div>
     );

@@ -3,6 +3,21 @@ import VizSensor from "react-visibility-sensor";
 import Box from "./Box";
 import "./Calendar.css";
 
+const months = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+];
+
 export class Calendar extends Component {
     constructor(props) {
         super(props);
@@ -57,6 +72,11 @@ export class Calendar extends Component {
                     }
                 }}>
                 <div>
+                    <div className="calc-header">
+                        <span className="header-txt">
+                            <b>{months[this.state.month]}</b> {this.state.year}
+                        </span>
+                    </div>
                     <div className="calendar-col">
                         {this.state.calender.map(row => {
                             return (

@@ -7,6 +7,18 @@ import DisabledTile from "../common/DisabledTile";
 import Tile from "../common/Tile";
 import "./Details.css";
 
+function createDates(day1, month1, year1) {
+    let d = new Date(year1, month1, day1);
+    return d.getTime();
+}
+
+function getDateFromString(str) {
+    let year1 = +str.substring(0, 4);
+    let month1 = +str.substring(5, 7);
+    let day1 = +str.substring(8, 10);
+    return createDates(day1, month1 - 1, year1);
+}
+
 function Details() {
     let history = useHistory();
     let query = new URLSearchParams(useLocation().search);
@@ -68,18 +80,38 @@ function Details() {
                 ],
             })
             .then(res => {
-                setState(() => ({
+                setState({
                     ...state,
                     continuationToken: res.data.responseobjects[0].continuationtoken,
                     posts: [...state.posts, ...res.data.responseobjects[0].posts],
-                }));
+                });
             })
             .catch(err => console.log(err));
+    };
+    const search = () => {
+        if (state.posts.length === 0) return;
+        if (state.currIndex !== 0) return;
+        //console.log(state.posts[0].calendardatetime);
+        let d1 = createDates(date.day, date.month, date.year);
+        for (let i = 0; i < state.posts.length; i++) {
+            let d2 = getDateFromString(state.posts[i].calendardatetime);
+            if (d1 === d2) {
+                setState({
+                    ...state,
+                    currIndex: i,
+                });
+                break;
+            }
+        }
     };
     useEffect(() => {
         fetchPost();
         // eslint-disable-next-line
     }, []);
+    useEffect(() => {
+        search();
+        // eslint-disable-next-line
+    }, [state.posts]);
     const prev = () => {
         if (state.currIndex === 0) return;
         setState({ ...state, currIndex: state.currIndex - 1 });

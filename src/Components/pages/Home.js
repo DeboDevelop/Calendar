@@ -43,9 +43,7 @@ function Home() {
         });
     };
     const scrollbot = () => {
-        bottomRef.current.scrollIntoView({
-            behavior: "smooth",
-        });
+        bottomRef.current.scrollIntoView();
     };
     const changeTitle = (month, year) => {
         setTitle({
@@ -107,6 +105,7 @@ function Home() {
                 }
             }
         });
+        scrollbot();
     };
     const appendBottom = () => {
         setState(prevState => {
@@ -163,7 +162,9 @@ function Home() {
         };
     });
     useEffect(() => {
-        scrollbot();
+        setTimeout(() => {
+            scrollbot();
+        }, 1000);
     }, []);
     console.log("Infinite");
     return (
@@ -182,10 +183,19 @@ function Home() {
                 }}></div>
             <div onScroll={handleScroll} className="all-calendar">
                 <div className="all-calendar-reverse">
-                    {state.itemsReverse.map(item => {
+                    {state.itemsReverse.map((item, index) => {
+                        if (index === state.itemsReverse.length - 2) {
+                            return (
+                                <div ref={bottomRef}>
+                                    <Calendar date={item} changeTitle={changeTitle} />
+                                </div>
+                            );
+                        }
                         return <Calendar date={item} changeTitle={changeTitle} />;
                     })}
                 </div>
+                {state.itemsReverse.length < 2 ? <div ref={bottomRef}></div> : <></>}
+
                 <div className="all-calendar">
                     {state.items.map(item => {
                         if (item.day === today.day && item.month === today.month && item.year === today.year) {
@@ -199,7 +209,6 @@ function Home() {
                         }
                     })}
                 </div>
-                <div ref={bottomRef}></div>
             </div>
         </div>
     );

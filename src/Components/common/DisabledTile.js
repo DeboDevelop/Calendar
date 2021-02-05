@@ -40,7 +40,7 @@ function DisabledTile({ data }) {
     return (
         <div className="disabled-tile overlay">
             <div style={getImg()}>
-                <img className="img" src={data.images[0].imageurl} alt="card"></img>
+                <img className="img" src={data.media[0].mediaurl} alt="card"></img>
             </div>
             <div className="first-row pads">
                 <div className="legends">

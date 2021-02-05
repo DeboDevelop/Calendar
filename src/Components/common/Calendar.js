@@ -66,7 +66,6 @@ export class Calendar extends Component {
         return (
             <VisibilitySensor
                 partialVisibility={true}
-                scrollCheck={true}
                 onChange={isVisible => {
                     if (isVisible) {
                         this.props.changeTitle(this.state.month, this.state.year);

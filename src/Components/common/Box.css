@@ -62,7 +62,7 @@ span {
     margin-left: 5px;
 }
 
-@media only screen and (max-width: 800) {
+@media only screen and (max-width: 800px) {
     .star {
         height: 10px;
         width: 10px;
@@ -100,5 +100,19 @@ span {
     }
     .star-div {
         margin-top: 16px;
+    }
+}
+
+@media only screen and (max-width: 375px) {
+    .circle-with-text {
+        margin: 3px 1px;
+        font-size: 7px;
+        padding: 3px;
+        height: 8px;
+        width: 8px;
+    }
+    .star {
+        height: 6px;
+        width: 6px;
     }
 }

@@ -40,7 +40,7 @@ function Box({ text, index, month, year }) {
         }
     }, []);
     const getImg = () => {
-        let cellWidth = (size.width - (2 / 100) * size.width) / 7;
+        let cellWidth = (size.width - (7 / 100) * size.width) / 7;
         return {
             height: 4 * (cellWidth / 3),
             width: cellWidth,
@@ -50,7 +50,7 @@ function Box({ text, index, month, year }) {
     };
     const getStyle = () => {
         let styleObj = {
-            width: (size.width - (2 / 100) * size.width) / 7,
+            width: (size.width - (7 / 100) * size.width) / 7,
             backgroundColor: "#FCFEFF",
             border: "solid",
             borderWidth: 0.3,

@@ -3,17 +3,34 @@ import { useHistory } from "react-router-dom";
 import filledStar from "../../assets/icons/filledStar.svg";
 import unfilledStar from "../../assets/icons/unfilledStar.svg";
 import "./Box.css";
-let data = require("../../assets/dummy/data.json");
 
 function createDates(day1, month1, year1) {
-    let d = new Date(year1, month1 - 1, day1 + 1);
+    let d = new Date(year1, month1, day1);
     return d.getTime();
 }
 
-function Box({ text, index, month, year }) {
+function getDateFromString(str) {
+    let year1 = +str.substring(0, 4);
+    let month1 = +str.substring(5, 7);
+    let day1 = +str.substring(8, 10);
+    return createDates(day1, month1 - 1, year1);
+}
+
+function Box({ text, index, month, year, posts }) {
     let history = useHistory();
     const [size, setSize] = useState({ width: 0, height: 0 });
     const [post, setPost] = useState(null);
+    const search = () => {
+        if (posts.length === 0) return null;
+        let d1 = createDates(+text, month, year);
+        for (let i = 0; i < posts.length; i++) {
+            let d2 = getDateFromString(posts[i].calendardatetime);
+            if (d1 === d2) {
+                setPost(posts[i]);
+                break;
+            }
+        }
+    };
     useLayoutEffect(() => {
         function updateSize() {
             setSize({ width: window.innerWidth, height: window.innerHeight });
@@ -24,21 +41,10 @@ function Box({ text, index, month, year }) {
     }, []);
     useEffect(() => {
         if (text >= 1 && text <= 31) {
-            const currDay = new Date().getDate();
-            const currMonth = new Date().getMonth();
-            const currYear = new Date().getFullYear();
-            let d1 = createDates(currDay, currMonth, currYear);
-            let d2 = createDates(text, month, year);
-            if (d1 > d2) {
-                console.log(month);
-                let decide = Math.floor(Math.random() * 4);
-                if (decide === 0) {
-                    decide = Math.floor(Math.random() * 4);
-                    setPost(data.responseobjects[0].posts[decide]);
-                }
-            }
+            search();
         }
-    }, []);
+        // eslint-disable-next-line
+    }, [posts]);
     const getImg = () => {
         let cellWidth = (size.width - (7 / 100) * size.width) / 7;
         return {
@@ -133,7 +139,7 @@ function Box({ text, index, month, year }) {
             {post !== null ? (
                 <>
                     <div style={getImg()}>
-                        <img className="post-img" src={post.images[0].imageurl} alt="user's post"></img>
+                        <img className="post-img" src={post.media[0].mediaurl} alt="user's post"></img>
                     </div>
                     <div className="legends-div">
                         {post.typeofday.map(item => {

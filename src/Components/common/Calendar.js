@@ -88,6 +88,7 @@ export class Calendar extends Component {
                                                 index={index}
                                                 month={this.state.month}
                                                 year={this.state.year}
+                                                posts={this.props.posts}
                                             />
                                         );
                                     })}

@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { useEffect, useRef, useState } from "react";
 import Calendar from "../common/Calendar";
 import "./Home.css";
@@ -30,6 +31,7 @@ function Home() {
             },
         ],
         itemsReverse: [],
+        posts: [],
     });
     const [title, setTitle] = useState({
         jump: false,
@@ -66,7 +68,7 @@ function Home() {
             if (prevState.itemsReverse.length === 0) {
                 let data = { ...today };
                 if (data.month === 0) {
-                    console.log(1);
+                    //console.log(1);
                     data = {
                         day: 0,
                         month: 11,
@@ -77,7 +79,7 @@ function Home() {
                         itemsReverse: [...prevState.itemsReverse, data],
                     };
                 } else {
-                    console.log(2);
+                    //console.log(2);
                     data = {
                         day: 0,
                         month: data.month - 1,
@@ -91,7 +93,7 @@ function Home() {
             } else {
                 let data = prevState.itemsReverse[prevState.itemsReverse.length - 1];
                 if (data.month === 0) {
-                    console.log(1);
+                    //console.log(1);
                     data = {
                         day: 0,
                         month: 11,
@@ -102,7 +104,7 @@ function Home() {
                         itemsReverse: [...prevState.itemsReverse, data],
                     };
                 } else {
-                    console.log(2);
+                    //console.log(2);
                     data = {
                         day: 0,
                         month: data.month - 1,
@@ -124,7 +126,7 @@ function Home() {
         setState(prevState => {
             let data = prevState.items[prevState.items.length - 1];
             if (data.month === 11) {
-                console.log(3);
+                //console.log(3);
                 data = {
                     day: 0,
                     month: 0,
@@ -135,7 +137,7 @@ function Home() {
                     items: [...state.items, data],
                 };
             } else {
-                console.log(4);
+                //console.log(4);
                 data = {
                     day: 0,
                     month: data.month + 1,
@@ -168,6 +170,61 @@ function Home() {
             appendTop();
         }
     };
+    const fetchPost = () => {
+        axios
+            .post("https://devapi.quinn.care/graph", {
+                requestobjects: [
+                    {
+                        posts: {
+                            operationtype: "read",
+                            id: {
+                                return: true,
+                            },
+                            userid: {
+                                searchvalues: ["41329663-5834-11eb-8e6e-3ca82abc3dd4"],
+                                return: true,
+                            },
+                            iscalendarentry: {
+                                searchvalues: ["true"],
+                                return: true,
+                            },
+                            media: {
+                                return: true,
+                            },
+                            rating: {
+                                return: true,
+                            },
+                            text: {
+                                return: true,
+                            },
+                            privacy: {
+                                searchvalues: [18],
+                                return: true,
+                            },
+                            typeofday: {
+                                return: true,
+                            },
+
+                            calendardatetime: {
+                                return: true,
+                                sort: "descending",
+                            },
+                            maxitemcount: "30",
+                            continuationtoken: null,
+                        },
+                    },
+                ],
+            })
+            .then(res => {
+                setState(prevState => {
+                    return {
+                        ...prevState,
+                        posts: [...prevState.posts, ...res.data.responseobjects[0].posts],
+                    };
+                });
+            })
+            .catch(err => console.log(err));
+    };
     useEffect(() => {
         window.addEventListener("scroll", handleScroll);
         return () => {
@@ -175,11 +232,11 @@ function Home() {
         };
     });
     useEffect(() => {
+        fetchPost();
         setTimeout(() => {
             scrollbot();
         }, 500);
     }, []);
-    console.log("Infinite");
     return (
         <div>
             <div className="header">
@@ -200,11 +257,11 @@ function Home() {
                         if (index === state.itemsReverse.length - 2) {
                             return (
                                 <div ref={bottomRef}>
-                                    <Calendar date={item} changeTitle={changeTitle} />
+                                    <Calendar date={item} changeTitle={changeTitle} posts={state.posts} />
                                 </div>
                             );
                         }
-                        return <Calendar date={item} changeTitle={changeTitle} />;
+                        return <Calendar date={item} changeTitle={changeTitle} posts={state.posts} />;
                     })}
                 </div>
                 {state.itemsReverse.length < 2 ? <div ref={bottomRef}></div> : <></>}
@@ -214,11 +271,11 @@ function Home() {
                         if (item.day === today.day && item.month === today.month && item.year === today.year) {
                             return (
                                 <div ref={calendarRef}>
-                                    <Calendar date={today} changeTitle={changeTitle} />
+                                    <Calendar date={today} changeTitle={changeTitle} posts={state.posts} />
                                 </div>
                             );
                         } else {
-                            return <Calendar date={item} changeTitle={changeTitle} />;
+                            return <Calendar date={item} changeTitle={changeTitle} posts={state.posts} />;
                         }
                     })}
                 </div>

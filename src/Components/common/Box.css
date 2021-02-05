@@ -101,6 +101,16 @@ span {
     .star-div {
         margin-top: 16px;
     }
+    .circle-with-text {
+        margin: 3px 1px;
+        font-size: 10px;
+        padding: 3px;
+        height: 8px;
+        width: 8px;
+    }
+    .legends-div {
+        margin-top: 5px;
+    }
 }
 
 @media only screen and (max-width: 375px) {

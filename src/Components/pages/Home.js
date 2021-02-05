@@ -32,6 +32,7 @@ function Home() {
         itemsReverse: [],
     });
     const [title, setTitle] = useState({
+        jump: false,
         month: today.month,
         year: today.year,
     });
@@ -46,9 +47,18 @@ function Home() {
         bottomRef.current.scrollIntoView();
     };
     const changeTitle = (month, year) => {
-        setTitle({
-            month: month,
-            year: year,
+        setTitle(prevState => {
+            if (prevState.jump === true) {
+                return {
+                    ...prevState,
+                    jump: false,
+                };
+            }
+            return {
+                jump: false,
+                month: month,
+                year: year,
+            };
         });
     };
     const appendTop = () => {
@@ -105,7 +115,10 @@ function Home() {
                 }
             }
         });
-        scrollbot();
+        setTitle({ ...title, jump: true });
+        setTimeout(() => {
+            scrollbot();
+        }, 500);
     };
     const appendBottom = () => {
         setState(prevState => {
@@ -164,7 +177,7 @@ function Home() {
     useEffect(() => {
         setTimeout(() => {
             scrollbot();
-        }, 1000);
+        }, 500);
     }, []);
     console.log("Infinite");
     return (

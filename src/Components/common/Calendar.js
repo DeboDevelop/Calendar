@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import VizSensor from "react-visibility-sensor";
+import VisibilitySensor from "react-visibility-sensor";
 import Box from "./Box";
 import "./Calendar.css";
 
@@ -64,8 +64,9 @@ export class Calendar extends Component {
     }
     render() {
         return (
-            <VizSensor
-                partialVisibility
+            <VisibilitySensor
+                partialVisibility={true}
+                scrollCheck={true}
                 onChange={isVisible => {
                     if (isVisible) {
                         this.props.changeTitle(this.state.month, this.state.year);
@@ -96,7 +97,7 @@ export class Calendar extends Component {
                         })}
                     </div>
                 </div>
-            </VizSensor>
+            </VisibilitySensor>
         );
     }
 }
